@@ -17,7 +17,7 @@ st.set_page_config(layout="wide")
 
 st.title("INTERACTIVE Data Visualization: Quantitative Neuropathology")
 
-# st.write('Testing plot - currently interactive features NOT working')
+# st.write('Testing plot')
 
 # st.image('/Users/victoriarachleff/SEA-AD_data_dashboard/multiomics_dashboard/images/neuropath_corr_scatter.svg')
 
