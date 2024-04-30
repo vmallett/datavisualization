@@ -28,7 +28,7 @@ st.title("INTERACTIVE Data Visualization: Quantitative Neuropathology")
 # read in csv form
 # st.write('Invisible steam of loading datasets')
 # filepath = '/Users/victoriarachleff/SEA-AD_data_dashboard/datavisualization/data/MTG_neuropath.csv'
-filepath = os.path.join(os.path.dirname(__file__), "data", "MTG_neuropath.csv")
+filepath = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "MTG_neuropath.csv")
 neuropath_df = pd.read_csv(filepath)
 # st.write('...Complete!')
 
