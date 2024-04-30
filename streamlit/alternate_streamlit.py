@@ -4,7 +4,7 @@ Alternate streamlit test file
 Created by: Victoria Rachleff
 Created on: 4/30/24 
 '''
-
+import os
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -27,7 +27,8 @@ st.title("INTERACTIVE Data Visualization: Quantitative Neuropathology")
 
 # read in csv form
 # st.write('Invisible steam of loading datasets')
-filepath = '/Users/victoriarachleff/SEA-AD_data_dashboard/datavisualization/data/MTG_neuropath.csv'
+# filepath = '/Users/victoriarachleff/SEA-AD_data_dashboard/datavisualization/data/MTG_neuropath.csv'
+filepath = os.path.join(os.path.dirname(__file__), "data", "MTG_neuropath.csv")
 neuropath_df = pd.read_csv(filepath)
 # st.write('...Complete!')
 
