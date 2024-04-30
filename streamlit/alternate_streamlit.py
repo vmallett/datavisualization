@@ -22,12 +22,12 @@ st.title("INTERACTIVE Data Visualization: Quantitative Neuropathology")
 # st.image('/Users/victoriarachleff/SEA-AD_data_dashboard/multiomics_dashboard/images/neuropath_corr_scatter.svg')
 
 # read in quant neuropath (from sea-ad website)
-filepath = '/Users/victoriarachleff/SEA-AD_neuropath_working/adata_MTGneuropath.h5ad'
+filepath = '/datavisualization/data/adata_MTGneuropath.h5ad'
 neuropath_adata = sc.read_h5ad(filepath)
 
 # read in csv form
 # st.write('Invisible steam of loading datasets')
-filepath = '/Users/victoriarachleff/SEA-AD_neuropath_working/MTG_neuropath.csv'
+filepath = '/datavisualization/data/MTG_neuropath.csv'
 neuropath_df = pd.read_csv(filepath)
 # st.write('...Complete!')
 
