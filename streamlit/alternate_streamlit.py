@@ -34,7 +34,8 @@ neuropath_df = pd.read_csv(filepath)
 
 source = neuropath_df
 
-fig = alt.Chart(source).mark_circle(size=100).encode(
+chart = alt.Chart(source)
+fig = chart.mark_circle(size=100).encode(
     alt.X(alt.repeat("column"), type='quantitative'),
     alt.Y(alt.repeat("row"), type='quantitative'),
     color='donor_pseudotime:Q',
