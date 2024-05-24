@@ -14,6 +14,7 @@ import altair as alt
 from streamlit_image_zoom import image_zoom
 from PIL import Image
 import cv2
+from typing import Union
 import sys
 
 def image_zoom(image: Union[Image.Image, np.ndarray],
