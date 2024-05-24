@@ -20,6 +20,10 @@ from IPython.display import HTML
 import sys
 sys.path.insert(0, '..')
 
+url = "https://www.sea-ad.org"
+st.write("check out this [link](%s)" % url)
+st.markdown("check out this [link](%s)" % url)
+
 
 def load_image(image_path: str) -> Image.Image:
     try:
@@ -35,12 +39,12 @@ st.set_page_config(layout="wide")
 
 st.title("Quantitative Neuropathology Interactive Data Explorer")
 
-st.write('Temporary note for CSE512: This is the prototype for what will be an even more descriptive and interactive website to engage with quantitative neuropathology data. I spent quite a bit of time implementing a new image zoom feature in Streamlit, but until I am able to access high resolution images (waiting on others for this), I realize the usefulness of this tool is limited. Given this is the prototype, I wanted to show that I could load and zoom the images, but plan to 1) sync the zooming and 2) use higher quality input images to see real tissue details on zoom! Additionally, I plan to add a table to neuropathology feature descriptions above the first plot (scatter matrix). I am working on this now and think that this will set the stage much better for looking at this jargony/non-standard data. Finally, a collegue Janna has been working with us on this dataset and is very interseted in data visualization and buiding a website - I included a great interactive visual that she made here (and gave credit in the plot as well). I intend to add one more visualization at the end which is a heatmap correlating all of the neuropathology features. I am still trying to think of the best way to make this plot INTERACTIVE, so until I figure that out, I am waiting to add that visual to the website. This is really an early prototype, but Im hopeful the final product will be something more engaging and useful!')
+st.write('Temporary note for CSE512: This is the prototype for what will be an even more descriptive and interactive website to engage with quantitative neuropathology data. I spent quite a bit of time implementing a new image zoom feature in Streamlit, but until I am able to access high resolution images (waiting on others for this), I realize the usefulness of this tool is limited. Given this is the prototype, I wanted to show that I could load and zoom the images, but plan to 1) sync the zooming and 2) use higher quality input images to see real tissue details on zoom! Additionally, I plan to add a table to neuropathology feature descriptions above the first plot (scatter matrix). I am working on this now and think that this will set the stage much better for looking at this jargony/non-standard data. Finally, a collegue Janna has been working with us on this dataset and is very interseted in data visualization and buiding a website - I included a great interactive visual that she made here (and gave credit in the plot as well). I intend to add one more visualization at the end which is a heatmap correlating all of the neuropathology features. I am still trying to think of the best way to make this plot INTERACTIVE, so until I figure that out, I am waiting to add that visual to the website. This is really an early prototype, but Im hopeful the final product will be something more engaging and useful! Final note, I am not able to remove the text below the images for now - this is something I intend to fix by the final version!')
 
 
-st.write('All images and data are publicly available data (sea-ad.org)')
+st.write('All images and data are publicly available data at [link](%s)' % url)
 
-st.write('Dataset description: SEA-AD is a large multicenter effort which uses postmortem human brain tissue (N=84 donors) to study Alzheimers disease. This webpage is dedicated to increasing visability of one aspect of this effort: quantitative neuropathology. To supplement the Neuropathology Image Viewer available on sea-ad.org which allows for high resolution synced zooming of both the original and masked image, this viewer is intended to introduce the dataset in more detail and then provide useful and interactive quantitative visualizations! ')
+st.write('Dataset description: SEA-AD is a large multicenter effort which uses postmortem human brain tissue (N=84 donors) to study Alzheimers disease. The middle temporal gyrus (MTG) was the focus of study for the current dataset. This webpage is dedicated to increasing visability of one aspect of this effort: quantitative neuropathology. To supplement the Neuropathology Image Viewer available on sea-ad.org which allows for high resolution synced zooming of both the original and masked image, this viewer is intended to introduce the dataset in more detail and then provide useful and interactive quantitative visualizations! ')
 
 st.write('')
 
