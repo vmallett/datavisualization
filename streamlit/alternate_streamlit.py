@@ -78,7 +78,7 @@ image = Image.open("/Users/victoriarachleff/SEA-AD_data_dashboard/datavisualizat
 
 # Numpy array (opencv, scikit-image, etc)
 import cv2
-image = cv2.cvtColor(cv2.imread("image.jpg"), cv2.COLOR_BGR2RGB)
+image = cv2.cvtColor(cv2.imread("image.png"), cv2.COLOR_BGR2RGB)
 
 # Display image with default settings
 image_zoom(image)
