@@ -34,6 +34,9 @@ col1, col_padding, col2 = st.columns([1, 0.05, 1])
 ## anndata image
 with col1:
 
+    st.write('Example image of human middle temporal gyrus (MTG) tissue immunohistochemically stained for 6e10 (amyloid beta plaques) and Iba1 (microglia). Move mouse over image and scroll to zoom in!')
+
+
     # New streamlit function: image zoom (working), but need higher qualtiy image
     def load_image(image_path: str) -> Image.Image:
         try:
@@ -63,6 +66,8 @@ with col1:
 ## anndata image
 with col2:
 
+    st.write('Example annotation mask from the same slide to visualize the features that are quantified (plaques in green and mircroglia in red.)') 
+             
     def load_image(image_path: str) -> Image.Image:
         try:
             image = Image.open(image_path)
