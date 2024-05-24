@@ -19,6 +19,14 @@ from typing import Union, Optional, Tuple, NewType
 from IPython.display import HTML
 import sys
 
+def load_image(image_path: str) -> Image.Image:
+    try:
+        image = Image.open(image_path)
+        return image
+    except Exception as e:
+        st.error(f"Error loading image: {e}")
+        return None
+
 HTML = NewType('HTML', str)
 
 st.set_page_config(layout="wide")
@@ -40,14 +48,6 @@ with col1:
 
 
     # New streamlit function: image zoom (working), but need higher qualtiy image
-    def load_image(image_path: str) -> Image.Image:
-        try:
-            image = Image.open(image_path)
-            return image
-        except Exception as e:
-            st.error(f"Error loading image: {e}")
-            return None
-
     def main():
         image_path = "/Users/victoriarachleff/SEA-AD_data_dashboard/datavisualization/images/tissuewithannotation.png"  # Ensure this path is correct
 
@@ -69,14 +69,6 @@ with col1:
 with col2:
 
     st.write('Example annotation mask from the same slide to visualize the features that are quantified (plaques in green and mircroglia in red. Duplex stains allow for co-localization analysis, which assesses the spatial overlap between plaques and microglia which is relevant for AD pathophysiology. Move mouse over image and scroll to zoom in!)') 
-             
-    def load_image(image_path: str) -> Image.Image:
-        try:
-            image = Image.open(image_path)
-            return image
-        except Exception as e:
-            st.error(f"Error loading image: {e}")
-            return None
 
     def main():
         image_path = "/Users/victoriarachleff/SEA-AD_data_dashboard/datavisualization/images/markupmask.png"  # Ensure this path is correct
