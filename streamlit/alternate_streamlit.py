@@ -70,30 +70,53 @@ fig = chart.mark_circle(size=100).encode(
 
 st.altair_chart(fig)
 
-
-# Supported Image Formats
-# PIL image
-from PIL import Image
-
-# Load image using PIL
+# TRYING ALTERNATIVE CODE FOR IMAGE ZOOM
 def load_image(image_path: str) -> Image.Image:
-    return Image.open(image_path)
+    try:
+        image = Image.open(image_path)
+        return image
+    except Exception as e:
+        st.error(f"Error loading image: {e}")
+        return None
 
-# Function to convert PIL image to OpenCV format
-def pil_to_cv2(image: Image.Image) -> np.ndarray:
-    return cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
+def main():
+    image_path = "/Users/victoriarachleff/SEA-AD_data_dashboard/datavisualization/images/tissuewithannotation.png"  # Ensure this path is correct
 
-# Main script
-image_path = "/Users/victoriarachleff/SEA-AD_data_dashboard/datavisualization/images/tissuewithannotation.png"  # Ensure this path is correct
+    # Load the image
+    image = load_image(image_path)
+    if image is None:
+        return
 
-# Load the image
-image = load_image(image_path)
+    # Display the image with zoom capabilities
+    html_content = image_zoom(image, mode="scroll", size=(800, 600), keep_aspect_ratio=False, zoom_factor=4.0, increment=0.2)
+    st.markdown(html_content, unsafe_allow_html=True)
 
-# Display image with default settings
-image_zoom(image)
+if __name__ == "__main__":
+    main()
 
-# Display image with custom settings
-image_zoom(image, mode="scroll", size=(800, 600), keep_aspect_ratio=False, zoom_factor=4.0, increment=0.2)
+# # Supported Image Formats
+# # PIL image
+# from PIL import Image
+
+# # Load image using PIL
+# def load_image(image_path: str) -> Image.Image:
+#     return Image.open(image_path)
+
+# # Function to convert PIL image to OpenCV format
+# def pil_to_cv2(image: Image.Image) -> np.ndarray:
+#     return cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
+
+# # Main script
+# image_path = "/Users/victoriarachleff/SEA-AD_data_dashboard/datavisualization/images/tissuewithannotation.png"  # Ensure this path is correct
+
+# # Load the image
+# image = load_image(image_path)
+
+# # Display image with default settings
+# image_zoom(image)
+
+# # Display image with custom settings
+# image_zoom(image, mode="scroll", size=(800, 600), keep_aspect_ratio=False, zoom_factor=4.0, increment=0.2)
 
 
 
