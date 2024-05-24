@@ -87,7 +87,7 @@ with col2:
         main()
 
 
-# st.image('/Users/victoriarachleff/SEA-AD_data_dashboard/multiomics_dashboard/images/neuropath_corr_scatter.svg')
+st.write('Below is in interactive plot visualizing key features from the quantitative neuropathology dataset. This correlation matrix allows one to assess relationships between variables across multiple variables readily and provides hover over funtionality for details on')
 
 # read in quant neuropath (from sea-ad website)
 # st.write('Invisible steam of loading datasets')
