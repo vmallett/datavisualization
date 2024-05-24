@@ -21,31 +21,30 @@ import sys
 
 HTML = NewType('HTML', str)
 
-
-# def image_zoom(image: Union[Image.Image, np.ndarray],
-#                 mode: Optional[str] = "default",
-#                 size: Optional[Union[int, Tuple[int, int]]] = 512,
-#                 keep_aspect_ratio: Optional[bool] = True,
-#                 keep_resolution: Optional[bool] = False,
-#                 zoom_factor: Optional[Union[float, int]] = 2.0,
-#                 increment: Optional[float] = 0.2,
-#             ) -> HTML:
-
-#     return component
-
 st.set_page_config(layout="wide")
 
-st.title("Quantitative Neuropathology")
+st.title("Quantitative Neuropathology Interactive Data Explorer")
 
-st.write('All visualizations created from publicly available data (sea-ad.org)')
+st.write('Data is publicly available data (sea-ad.org)')
+
+st.write('')
+
+col1, col2 = st.columns([1, 0.1, 1]) # column 2 creates padding between the two "real" columns
+
+## anndata image
+with col1:
+
+    st.write('tst')
+
+
+## anndata image
+with col1:
+
+    st.write('tst')
 
 # st.image('/Users/victoriarachleff/SEA-AD_data_dashboard/multiomics_dashboard/images/neuropath_corr_scatter.svg')
 
 # read in quant neuropath (from sea-ad website)
-# filepath = '/datavisualization/data/adata_MTGneuropath.h5ad'
-# neuropath_adata = sc.read_h5ad(filepath)
-
-# read in csv form
 # st.write('Invisible steam of loading datasets')
 # filepath = '/Users/victoriarachleff/SEA-AD_data_dashboard/datavisualization/data/MTG_neuropath.csv'
 filepath = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "MTG_neuropath.csv")
@@ -54,6 +53,7 @@ neuropath_df = pd.read_csv(filepath)
 
 source = neuropath_df
 
+# interactive hover over quant neuropath figure
 chart = alt.Chart(source)
 fig = chart.mark_circle(size=100).encode(
     alt.X(alt.repeat("column"), type='quantitative'),
@@ -61,8 +61,8 @@ fig = chart.mark_circle(size=100).encode(
     color='donor_pseudotime:Q',
     tooltip=['donor_ID', 'Braak', 'Thal', 'Overall AD neuropathological Change','CERAD score', 'LATE', 'donor_pseudotime'],
 ).properties(
-    width=400,
-    height=400
+    width=300,
+    height=300
 ).repeat(
     row=['number of NeuN positive cells per area_Grey matter', 'number of 6e10 positive objects per area_Grey matter', 'number of AT8 positive cells per area_Grey matter'],
     column=['number of AT8 positive cells per area_Grey matter', 'number of 6e10 positive objects per area_Grey matter', 'number of NeuN positive cells per area_Grey matter']
@@ -70,7 +70,7 @@ fig = chart.mark_circle(size=100).encode(
 
 st.altair_chart(fig)
 
-# TRYING ALTERNATIVE CODE FOR IMAGE ZOOM
+# New streamlit function: image zoom (working), but need higher qualtiy image
 def load_image(image_path: str) -> Image.Image:
     try:
         image = Image.open(image_path)
@@ -93,32 +93,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-# # Supported Image Formats
-# # PIL image
-# from PIL import Image
-
-# # Load image using PIL
-# def load_image(image_path: str) -> Image.Image:
-#     return Image.open(image_path)
-
-# # Function to convert PIL image to OpenCV format
-# def pil_to_cv2(image: Image.Image) -> np.ndarray:
-#     return cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
-
-# # Main script
-# image_path = "/Users/victoriarachleff/SEA-AD_data_dashboard/datavisualization/images/tissuewithannotation.png"  # Ensure this path is correct
-
-# # Load the image
-# image = load_image(image_path)
-
-# # Display image with default settings
-# image_zoom(image)
-
-# # Display image with custom settings
-# image_zoom(image, mode="scroll", size=(800, 600), keep_aspect_ratio=False, zoom_factor=4.0, increment=0.2)
-
-
 
 
 
