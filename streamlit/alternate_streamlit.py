@@ -128,4 +128,4 @@ import streamlit.components.v1 as components
 HtmlFile = open("html/MTG_INFERENCE 1.html", 'r', encoding='utf-8')
 source_code = HtmlFile.read() 
 # print(source_code)
-components.html(source_code,  height = 600, width = 600)
+components.html(source_code,  height = 600, width = 800)
