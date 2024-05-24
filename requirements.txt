@@ -121,4 +121,5 @@ yarl==1.9.4
 zipp==3.17.0
 Pillow
 streamlit-image-zoom==0.0.3
+cv2
 cairosvg==2.7.1
