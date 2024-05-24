@@ -11,13 +11,27 @@ import numpy as np
 import scanpy as sc
 import matplotlib.pyplot as plt
 import altair as alt
+from streamlit_image_zoom import image_zoom
+from PIL import Image
+import cv2
 import sys
+
+def image_zoom(image: Union[Image.Image, np.ndarray],
+                mode: Optional[str] = "default",
+                size: Optional[Union[int, Tuple[int, int]]] = 512,
+                keep_aspect_ratio: Optional[bool] = True,
+                keep_resolution: Optional[bool] = False,
+                zoom_factor: Optional[Union[float, int]] = 2.0,
+                increment: Optional[float] = 0.2,
+            ) -> HTML:
+
+    return component
 
 st.set_page_config(layout="wide")
 
-st.title("INTERACTIVE Data Visualization: Quantitative Neuropathology")
+st.title("Quantitative Neuropathology")
 
-# st.write('Testing plot')
+st.write('All visualizations created from publicly available data (sea-ad.org)')
 
 # st.image('/Users/victoriarachleff/SEA-AD_data_dashboard/multiomics_dashboard/images/neuropath_corr_scatter.svg')
 
@@ -49,6 +63,23 @@ fig = chart.mark_circle(size=100).encode(
 ).interactive()
 
 st.altair_chart(fig)
+
+
+# Supported Image Formats
+# PIL image
+from PIL import Image
+image = Image.open("images/building.jpg")
+
+# Numpy array (opencv, scikit-image, etc)
+import cv2
+image = cv2.cvtColor(cv2.imread("image.jpg"), cv2.COLOR_BGR2RGB)
+
+# Display image with default settings
+image_zoom(image)
+
+# Display image with custom settings
+image_zoom(image, mode="scroll", size=(800, 600), keep_aspect_ratio=False, zoom_factor=4.0, increment=0.2)
+
 
 
 
