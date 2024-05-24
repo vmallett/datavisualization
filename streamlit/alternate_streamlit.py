@@ -52,8 +52,8 @@ with col1:
             return
 
         # Display the image with zoom capabilities
-        st.image(image_zoom(image_path, mode="scroll", size=(800, 600), keep_aspect_ratio=False, zoom_factor=4.0, increment=0.2), use_column_width=True)
-
+        html_content = image_zoom(image, mode="scroll", size=(800, 600), keep_aspect_ratio=False, zoom_factor=4.0, increment=0.2)
+        st.markdown(html_content, unsafe_allow_html=True)
 
     if __name__ == "__main__":
         main()
@@ -80,8 +80,8 @@ with col2:
             return
 
         # Display the image with zoom capabilities
-        st.image(image_zoom(image_path, mode="scroll", size=(800, 600), keep_aspect_ratio=False, zoom_factor=4.0, increment=0.2), use_column_width=True)
-
+        html_content = image_zoom(image, mode="scroll", size=(800, 600), keep_aspect_ratio=False, zoom_factor=4.0, increment=0.2)
+        st.markdown(html_content, unsafe_allow_html=True)
 
     if __name__ == "__main__":
         main()
