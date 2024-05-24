@@ -55,8 +55,8 @@ with col1:
         html_content = image_zoom(image, mode="scroll", size=(800, 600), keep_aspect_ratio=False, zoom_factor=4.0, increment=0.2)
         st.markdown(html_content, unsafe_allow_html=True)
 
-    # if __name__ == "__main__":
-    #     main()
+    if __name__ == "__main__":
+        main()
 
 
 
@@ -83,8 +83,8 @@ with col2:
         html_content = image_zoom(image, mode="scroll", size=(800, 600), keep_aspect_ratio=False, zoom_factor=4.0, increment=0.2)
         st.markdown(html_content, unsafe_allow_html=True)
 
-    # if __name__ == "__main__":
-    #     main()
+    if __name__ == "__main__":
+        main()
 
 
 # st.image('/Users/victoriarachleff/SEA-AD_data_dashboard/multiomics_dashboard/images/neuropath_corr_scatter.svg')
