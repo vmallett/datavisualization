@@ -66,7 +66,7 @@ with col1:
 ## anndata image
 with col2:
 
-    st.write('Example annotation mask from the same slide to visualize the features that are quantified (plaques in green and mircroglia in red.)') 
+    st.write('Example annotation mask from the same slide to visualize the features that are quantified (plaques in green and mircroglia in red. Move mouse over image and scroll to zoom in!)') 
              
     def load_image(image_path: str) -> Image.Image:
         try:
@@ -91,6 +91,8 @@ with col2:
     if __name__ == "__main__":
         main()
 
+
+st.title("Interactive Plots")
 
 st.write('Below is in interactive plot visualizing key features from the quantitative neuropathology dataset. This correlation matrix allows one to assess relationships between variables across multiple variables readily and provides hover over funtionality for details on')
 
