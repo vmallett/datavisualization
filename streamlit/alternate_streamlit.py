@@ -29,7 +29,7 @@ st.write('Data is publicly available data (sea-ad.org)')
 
 st.write('')
 
-col1, col2 = st.columns([1, 0.1, 1]) # column 2 creates padding between the two "real" columns
+col1, col2 = st.columns([1, 0.1]) # column 2 creates padding between the two "real" columns
 
 ## anndata image
 with col1:
