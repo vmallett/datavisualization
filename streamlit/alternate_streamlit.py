@@ -21,8 +21,6 @@ import sys
 sys.path.insert(0, '..')
 
 url = "https://www.sea-ad.org"
-st.write("check out this [link](%s)" % url)
-st.markdown("check out this [link](%s)" % url)
 
 
 def load_image(image_path: str) -> Image.Image:
