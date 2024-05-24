@@ -123,29 +123,30 @@ fig = chart.mark_circle(size=100).encode(
 st.altair_chart(fig)
 
 
-# Scatter plot with regression lines
-chart = alt.Chart(source).mark_circle(size=100).encode(
-    alt.X(alt.repeat("column"), type='quantitative'),
-    alt.Y(alt.repeat("row"), type='quantitative'),
-    color='donor_pseudotime:Q',
-    tooltip=['donor_ID', 'Braak', 'Thal', 'Overall AD neuropathological Change', 'CERAD score', 'LATE', 'donor_pseudotime'],
-)
+# # Scatter plot with regression lines
+# chart = alt.Chart(source).mark_circle(size=100).encode(
+#     alt.X(alt.repeat("column"), type='quantitative'),
+#     alt.Y(alt.repeat("row"), type='quantitative'),
+#     color='donor_pseudotime:Q',
+#     tooltip=['donor_ID', 'Braak', 'Thal', 'Overall AD neuropathological Change', 'CERAD score', 'LATE', 'donor_pseudotime'],
+# )
 
-# Regression line
-regression = chart.transform_regression(
-    alt.repeat("column"), alt.repeat("row"), method='linear'
-).mark_line(color='red')
+# # Regression line
+# regression = chart.transform_regression(
+#     alt.repeat("column"), alt.repeat("row"), method='linear'
+# ).mark_line(color='red')
 
-# Combine scatter plot and regression line
-fig = alt.layer(chart, regression).properties(
-    width=300,
-    height=300
-).repeat(
-    row=['number of NeuN positive cells per area_Grey matter', 'number of 6e10 positive objects per area_Grey matter', 'number of AT8 positive cells per area_Grey matter'],
-    column=['number of AT8 positive cells per area_Grey matter', 'number of 6e10 positive objects per area_Grey matter', 'number of NeuN positive cells per area_Grey matter']
-).interactive()
+# # Combine scatter plot and regression line
+# fig = alt.layer(chart, regression).properties(
+#     width=300,
+#     height=300
+# ).repeat(
+#     row=['number of NeuN positive cells per area_Grey matter', 'number of 6e10 positive objects per area_Grey matter', 'number of AT8 positive cells per area_Grey matter'],
+#     column=['number of AT8 positive cells per area_Grey matter', 'number of 6e10 positive objects per area_Grey matter', 'number of NeuN positive cells per area_Grey matter']
+# ).interactive()
 
-st.altair_chart(fig)
+# st.altair_chart(fig)
+
 
 
 
