@@ -59,7 +59,7 @@ with col1:
             return
 
         # Display the image with zoom capabilities
-        html_content = image_zoom(image, mode="scroll", size=(600, 400), keep_aspect_ratio=False, zoom_factor=4.0, increment=0.2)
+        html_content = image_zoom(image, mode="scroll", size=(750, 550), keep_aspect_ratio=True, zoom_factor=4.0, increment=0.2)
         st.markdown(html_content, unsafe_allow_html=True)
 
     if __name__ == "__main__":
@@ -81,7 +81,7 @@ with col2:
             return
 
         # Display the image with zoom capabilities
-        html_content = image_zoom(image, mode="scroll", size=(600, 400), keep_aspect_ratio=False, zoom_factor=4.0, increment=0.2)
+        html_content = image_zoom(image, mode="scroll", size=(750, 550), keep_aspect_ratio=True, zoom_factor=4.0, increment=0.2)
         st.markdown(html_content, unsafe_allow_html=True)
 
     if __name__ == "__main__":
