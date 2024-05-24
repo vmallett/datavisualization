@@ -25,7 +25,7 @@ st.set_page_config(layout="wide")
 
 st.title("Quantitative Neuropathology Interactive Data Explorer")
 
-st.write('Data is publicly available data (sea-ad.org)')
+st.write('All images and data are publicly available data (sea-ad.org)')
 
 st.write('')
 
