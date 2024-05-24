@@ -96,7 +96,7 @@ with col2:
 
 st.title("Interactive Plots")
 
-st.write('Plot 1: visualizing correlations between key features from the quantitative neuropathology dataset. This correlation matrix allows one to assess relationships between variables across multiple variables readily and provides hover over funtionality for details on')
+st.write('Plot 1: visualizing correlations between key features from the quantitative neuropathology dataset. This correlation matrix allows one to assess relationships between variables across multiple variables readily and provides hover over funtionality for details on demand! Three key features were selected for visualization in this context: the number of neurons (NeuN positive cells), the number of amyloid beta plaques (6e10 positive objects), and the number of pTau bearing cells (AT8 positive cells).')
 
 # read in quant neuropath (from sea-ad website)
 # st.write('Invisible steam of loading datasets')
