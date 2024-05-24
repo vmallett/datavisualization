@@ -63,7 +63,29 @@ with col1:
 ## anndata image
 with col2:
 
-    st.write('tst')
+    def load_image(image_path: str) -> Image.Image:
+        try:
+            image = Image.open(image_path)
+            return image
+        except Exception as e:
+            st.error(f"Error loading image: {e}")
+            return None
+
+    def main():
+        image_path = "/Users/victoriarachleff/SEA-AD_data_dashboard/datavisualization/images/markupmask.png"  # Ensure this path is correct
+
+        # Load the image
+        image = load_image(image_path)
+        if image is None:
+            return
+
+        # Display the image with zoom capabilities
+        html_content = image_zoom(image, mode="scroll", size=(800, 600), keep_aspect_ratio=False, zoom_factor=4.0, increment=0.2)
+        st.markdown(html_content, unsafe_allow_html=True)
+
+    if __name__ == "__main__":
+        main()
+
 
 # st.image('/Users/victoriarachleff/SEA-AD_data_dashboard/multiomics_dashboard/images/neuropath_corr_scatter.svg')
 
