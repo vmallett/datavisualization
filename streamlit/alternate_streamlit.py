@@ -89,13 +89,6 @@ image_path = "/Users/victoriarachleff/SEA-AD_data_dashboard/datavisualization/im
 # Load the image
 image = load_image(image_path)
 
-# Convert to OpenCV format if needed
-cv2_image = pil_to_cv2(image)
-
-# Numpy array (opencv, scikit-image, etc)
-import cv2
-image = cv2.cvtColor(cv2.imread("image.png"), cv2.COLOR_BGR2RGB)
-
 # Display image with default settings
 image_zoom(image)
 
