@@ -74,7 +74,7 @@ st.altair_chart(fig)
 # Supported Image Formats
 # PIL image
 from PIL import Image
-image = Image.open("images/building.jpg")
+image = Image.open("/Users/victoriarachleff/SEA-AD_data_dashboard/datavisualization/images/markupmask.png")
 
 # Numpy array (opencv, scikit-image, etc)
 import cv2
