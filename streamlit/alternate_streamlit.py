@@ -14,7 +14,6 @@ import matplotlib.pyplot as plt
 import altair as alt
 from streamlit_image_zoom import image_zoom
 from PIL import Image
-import cairosvg
 import cv2
 from typing import Union, Optional, Tuple, NewType
 from IPython.display import HTML
@@ -33,23 +32,6 @@ def image_zoom(image: Union[Image.Image, np.ndarray],
             ) -> HTML:
 
     return component
-
-def svg_to_png(svg_path: str) -> Image.Image:
-    png_data = cairosvg.svg2png(url=svg_path)
-    image = Image.open(io.BytesIO(png_data))
-    return image
-
-# Path to your SVG file
-svg_path1 = "/Users/victoriarachleff/SEA-AD_data_dashboard/datavisualization/images/original.svg"
-
-# Convert the SVG to a PNG image
-image1 = svg_to_png(svg_path1)
-
-# Path to your SVG file
-svg_path2 = "/Users/victoriarachleff/SEA-AD_data_dashboard/datavisualization/images/mask.svg"
-
-# Convert the SVG to a PNG image
-image2 = svg_to_png(svg_path2)
 
 st.set_page_config(layout="wide")
 
