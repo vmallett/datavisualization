@@ -27,6 +27,8 @@ st.title("Quantitative Neuropathology Interactive Data Explorer")
 
 st.write('All images and data are publicly available data (sea-ad.org)')
 
+st.write('Dataset description: SEA-AD is a large multicenter effort which uses postmortem human brain tissue (N=84 donors) to study Alzheimers disease. This webpage is dedicated to increasing visability of one aspect of this effort: quantitative neuropathology. To supplement the Neuropathology Image Viewer available on sea-ad.org which allows for high resolution synced zooming of both the original and masked image, this viewer is intended to introduce the dataset in more detail and then provide useful and interactive quantitative visualizations! ')
+
 st.write('')
 
 col1, col_padding, col2 = st.columns([1, 0.05, 1])
@@ -66,7 +68,7 @@ with col1:
 ## anndata image
 with col2:
 
-    st.write('Example annotation mask from the same slide to visualize the features that are quantified (plaques in green and mircroglia in red. Move mouse over image and scroll to zoom in!)') 
+    st.write('Example annotation mask from the same slide to visualize the features that are quantified (plaques in green and mircroglia in red. Duplex stains allow for co-localization analysis, which assesses the spatial overlap between plaques and microglia which is relevant for AD pathophysiology. Move mouse over image and scroll to zoom in!)') 
              
     def load_image(image_path: str) -> Image.Image:
         try:
