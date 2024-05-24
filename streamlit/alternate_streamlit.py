@@ -17,6 +17,8 @@ from PIL import Image
 from typing import Union, Optional, Tuple, NewType
 from IPython.display import HTML
 import sys
+sys.path.insert(0, '..')
+
 
 def load_image(image_path: str) -> Image.Image:
     try:
