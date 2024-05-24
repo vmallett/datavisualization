@@ -5,6 +5,7 @@ Created by: Victoria Rachleff
 Created on: 4/30/24 
 '''
 import os
+import io
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -31,6 +32,23 @@ def image_zoom(image: Union[Image.Image, np.ndarray],
             ) -> HTML:
 
     return component
+
+def svg_to_png(svg_path: str) -> Image.Image:
+    png_data = cairosvg.svg2png(url=svg_path)
+    image = Image.open(io.BytesIO(png_data))
+    return image
+
+# Path to your SVG file
+svg_path1 = "/Users/victoriarachleff/SEA-AD_data_dashboard/datavisualization/images/original.svg"
+
+# Convert the SVG to a PNG image
+image1 = svg_to_png(svg_path1)
+
+# Path to your SVG file
+svg_path2 = "/Users/victoriarachleff/SEA-AD_data_dashboard/datavisualization/images/mask.svg"
+
+# Convert the SVG to a PNG image
+image2 = svg_to_png(svg_path2)
 
 st.set_page_config(layout="wide")
 
