@@ -74,7 +74,23 @@ st.altair_chart(fig)
 # Supported Image Formats
 # PIL image
 from PIL import Image
-image = Image.open("/Users/victoriarachleff/SEA-AD_data_dashboard/datavisualization/images/markupmask.png")
+
+# Load image using PIL
+def load_image(image_path: str) -> Image.Image:
+    return Image.open(image_path)
+
+# Function to convert PIL image to OpenCV format
+def pil_to_cv2(image: Image.Image) -> np.ndarray:
+    return cv2.cvtColor(np.array(image), cv2.COLOR_RGB2BGR)
+
+# Main script
+image_path = "/Users/victoriarachleff/SEA-AD_data_dashboard/datavisualization/images/tissuewithannotation.png"  # Ensure this path is correct
+
+# Load the image
+image = load_image(image_path)
+
+# Convert to OpenCV format if needed
+cv2_image = pil_to_cv2(image)
 
 # Numpy array (opencv, scikit-image, etc)
 import cv2
