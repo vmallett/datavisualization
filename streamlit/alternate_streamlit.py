@@ -34,7 +34,7 @@ col1, col_padding, col2 = st.columns([1, 0.05, 1])
 ## anndata image
 with col1:
 
-    st.write('Example image of human middle temporal gyrus (MTG) tissue immunohistochemically stained for 6e10 (amyloid beta plaques) and Iba1 (microglia). Move mouse over image and scroll to zoom in!')
+    st.write('Example image of human middle temporal gyrus (MTG) tissue immunohistochemically stained for 6e10 (amyloid beta plaques, brown) and Iba1 (microglia, blue). Cortical layer annotations are included for layers 1, 2, 3, 4, and 5/6. Move mouse over image and scroll to zoom in!')
 
 
     # New streamlit function: image zoom (working), but need higher qualtiy image
@@ -94,7 +94,7 @@ with col2:
 
 st.title("Interactive Plots")
 
-st.write('Below is in interactive plot visualizing key features from the quantitative neuropathology dataset. This correlation matrix allows one to assess relationships between variables across multiple variables readily and provides hover over funtionality for details on')
+st.write('Plot 1: visualizing correlations between key features from the quantitative neuropathology dataset. This correlation matrix allows one to assess relationships between variables across multiple variables readily and provides hover over funtionality for details on')
 
 # read in quant neuropath (from sea-ad website)
 # st.write('Invisible steam of loading datasets')
