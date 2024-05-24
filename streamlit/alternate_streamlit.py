@@ -34,11 +34,34 @@ col1, col2 = st.columns([1, 0.1]) # column 2 creates padding between the two "re
 ## anndata image
 with col1:
 
-    st.write('tst')
+    # New streamlit function: image zoom (working), but need higher qualtiy image
+    def load_image(image_path: str) -> Image.Image:
+        try:
+            image = Image.open(image_path)
+            return image
+        except Exception as e:
+            st.error(f"Error loading image: {e}")
+            return None
+
+    def main():
+        image_path = "/Users/victoriarachleff/SEA-AD_data_dashboard/datavisualization/images/tissuewithannotation.png"  # Ensure this path is correct
+
+        # Load the image
+        image = load_image(image_path)
+        if image is None:
+            return
+
+        # Display the image with zoom capabilities
+        html_content = image_zoom(image, mode="scroll", size=(800, 600), keep_aspect_ratio=False, zoom_factor=4.0, increment=0.2)
+        st.markdown(html_content, unsafe_allow_html=True)
+
+    if __name__ == "__main__":
+        main()
+
 
 
 ## anndata image
-with col1:
+with col2:
 
     st.write('tst')
 
@@ -70,29 +93,6 @@ fig = chart.mark_circle(size=100).encode(
 
 st.altair_chart(fig)
 
-# New streamlit function: image zoom (working), but need higher qualtiy image
-def load_image(image_path: str) -> Image.Image:
-    try:
-        image = Image.open(image_path)
-        return image
-    except Exception as e:
-        st.error(f"Error loading image: {e}")
-        return None
-
-def main():
-    image_path = "/Users/victoriarachleff/SEA-AD_data_dashboard/datavisualization/images/tissuewithannotation.png"  # Ensure this path is correct
-
-    # Load the image
-    image = load_image(image_path)
-    if image is None:
-        return
-
-    # Display the image with zoom capabilities
-    html_content = image_zoom(image, mode="scroll", size=(800, 600), keep_aspect_ratio=False, zoom_factor=4.0, increment=0.2)
-    st.markdown(html_content, unsafe_allow_html=True)
-
-if __name__ == "__main__":
-    main()
 
 
 
