@@ -96,7 +96,7 @@ with col2:
 
 st.title("Interactive Plots")
 
-st.write('Plot 1: visualizing correlations between key features from the quantitative neuropathology dataset. This correlation matrix allows one to assess relationships between variables across multiple variables readily and provides hover over funtionality for details on demand! Three key features were selected for visualization in this context: the number of neurons (NeuN positive cells), the number of amyloid beta plaques (6e10 positive objects), and the number of pTau bearing cells (AT8 positive cells).')
+st.write('Plot 1: visualizing correlations between key features from the quantitative neuropathology dataset. This correlation matrix allows one to assess relationships across multiple variables readily and provides hover over funtionality for details on demand! Three key features were selected for visualization in this context: the number of neurons (NeuN positive cells), the number of amyloid beta plaques (6e10 positive objects), and the number of pTau bearing cells (AT8 positive cells).')
 
 # read in quant neuropath (from sea-ad website)
 # st.write('Invisible steam of loading datasets')
@@ -116,7 +116,7 @@ fig = chart.mark_circle(size=100).encode(
     tooltip=['donor_ID', 'Braak', 'Thal', 'Overall AD neuropathological Change','CERAD score', 'LATE', 'donor_pseudotime'],
 ).properties(
     width=300,
-    height=150
+    height=300
 ).repeat(
     row=['number of NeuN positive cells per area_Grey matter', 'number of 6e10 positive objects per area_Grey matter', 'number of AT8 positive cells per area_Grey matter'],
     column=['number of AT8 positive cells per area_Grey matter', 'number of 6e10 positive objects per area_Grey matter', 'number of NeuN positive cells per area_Grey matter']
