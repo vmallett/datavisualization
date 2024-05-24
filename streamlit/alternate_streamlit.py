@@ -14,8 +14,12 @@ import altair as alt
 from streamlit_image_zoom import image_zoom
 from PIL import Image
 import cv2
-from typing import Union, Optional, Tuple
+from typing import Union, Optional, Tuple, NewType
+from IPython.display import HTML
 import sys
+
+HTML = NewType('HTML', str)
+
 
 def image_zoom(image: Union[Image.Image, np.ndarray],
                 mode: Optional[str] = "default",
