@@ -80,7 +80,7 @@ with col1:
             return
 
         # Display the image with zoom capabilities
-        image_zoom(image, mode="scroll", size=(750, 550), keep_aspect_ratio=True, zoom_factor=4.0, increment=0.2)
+        image_zoom(image, mode="scroll", size=(500, 300), keep_aspect_ratio=True, zoom_factor=4.0, increment=0.2)
 
     if __name__ == "__main__":
         main()
@@ -89,7 +89,7 @@ with col1:
 
 ## anndata image
 with col2:
-    st.header('Extracted ROI with feature masking')
+    st.header('Extracted region of interest with feature masking')
 
 
     st.write('Example annotation mask from the same slide to visualize the features that are quantified (plaques in green and mircroglia in red. Move mouse over image and scroll to zoom in!). High res coming soon...') 
@@ -103,7 +103,7 @@ with col2:
             return
 
         # Display the image with zoom capabilities
-        image_zoom(image, mode="scroll", size=(750, 550), keep_aspect_ratio=True, zoom_factor=4.0, increment=0.2)
+        image_zoom(image, mode="scroll", size=(500, 300), keep_aspect_ratio=True, zoom_factor=4.0, increment=0.2)
 
     if __name__ == "__main__":
         main()
