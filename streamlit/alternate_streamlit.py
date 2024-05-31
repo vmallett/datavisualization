@@ -158,15 +158,6 @@ xcol_param = alt.param(
     bind=dropdown
 )
 
-dropdown = alt.binding_select(
-    options=['number of AT8 positive cells per area_Grey matter', 'number of 6e10 positive objects per area_Grey matter'],
-    name='X-axis column '
-)
-ycol_param = alt.param(
-    value='number of AT8 positive cells per area_Grey matter',
-    bind=dropdown
-)
-
 brush = alt.selection_interval()
 
 chart = alt.Chart(source, width = 1500)
@@ -177,7 +168,7 @@ fig = chart.mark_circle(size=100).encode(
 ).transform_calculate(
     x=f'datum[{xcol_param.name}]'
 ).add_params(
-    xcol_param, ycol_param
+    xcol_param
 )
 
 bars = chart.mark_bar().encode(
