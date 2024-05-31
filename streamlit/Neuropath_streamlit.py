@@ -33,7 +33,7 @@ st.write("# Welcome to the Neuropath Interactive Viewer! 🧠")
 
 st.sidebar.success("Select a sub-section above.")
 
-st.header("The purpose of this website is to increase the visibility of and allow for visualization of the SEA-AD quantitative neuropathology dataset with interactive plots to enable users to ask more targeted reserach questions.")
+st.header("The purpose of this website is to increase visibility and allow for visualization of the SEA-AD quantitative neuropathology dataset with interactive plots to enable users to ask more targeted reserach questions.")
 
 st.markdown(
 """
