@@ -34,9 +34,6 @@ st.set_page_config(layout="wide")
 
 st.title("Quantitative Neuropathology Interactive Data Explorer")
 
-st.write('Temporary note for CSE512: This is the prototype for what will be an even more descriptive and interactive website to engage with quantitative neuropathology data. I spent quite a bit of time implementing a new image zoom feature in Streamlit, but until I am able to access high resolution images (waiting on others for this), I realize the usefulness of this tool is limited. Given this is the prototype, I wanted to show that I could load and zoom the images, but plan to 1) sync the zooming and 2) use higher quality input images to see real tissue details on zoom! Additionally, I plan to add a table to neuropathology feature descriptions above the first plot (scatter matrix). I am working on this now and think that this will set the stage much better for looking at this jargony/non-standard data. Finally, a collegue Janna has been working with us on this dataset and is very interseted in data visualization and buiding a website - I included a great interactive visual that she made here (and gave credit in the plot as well). I intend to add one more visualization at the end which is a heatmap correlating all of the neuropathology features. I am still trying to think of the best way to make this plot INTERACTIVE, so until I figure that out, I am waiting to add that visual to the website. This is really an early prototype, but Im hopeful the final product will be something more engaging and useful! Final note, I am not able to remove the text below the images for now - this is something I intend to fix by the final version!')
-
-
 st.write('All images and data are publicly available data at sea-ag.org')
 url = "https://www.sea-ad.org"
 
@@ -93,11 +90,6 @@ with col2:
 
 st.title("Interactive Plots")
 
-
-st.title('Scatter Matrix of  Key Quantitative Neuropathology Features')
-st.write('Plot 1: Visualizing correlations between key features from the quantitative neuropathology dataset. This correlation matrix allows one to assess relationships across multiple variables readily and provides hover over funtionality for details on demand! Three key features were selected for visualization in this context: the number of neurons (NeuN positive cells), the number of amyloid beta plaques (6e10 positive objects), and the number of pTau bearing cells (AT8 positive cells).')
-st.write('Interaction: Hover mouse over any data point to see details on demand including: Donor ID, Braak Stage, Thal Phase, ADNC, CERAD, LATE, and donor pseudotime.')
-
 # read in quant neuropath (from sea-ad website)
 # st.write('Invisible steam of loading datasets')
 # filepath = '/Users/victoriarachleff/SEA-AD_data_dashboard/datavisualization/data/MTG_neuropath.csv'
@@ -107,7 +99,38 @@ neuropath_df = pd.read_csv(filepath)
 
 source = neuropath_df
 
+
+
+st.title('Parallel Coordinate')
+st.write('Plot 1: ')
+st.write('Interaction: ')
+
+
+chart = alt.Chart(source, width = 1500)
+
+fig = chart.transform_window(
+    index='count()'
+).transform_fold(
+    ['Braak','Thal']
+).mark_line().encode(
+    x='key:N',
+    y=alt.Y('value:N'),
+    color='donor_ID:N',
+    detail='index:N',
+    opacity=alt.value(0.5)
+)
+st.altair_chart(fig)
+
+
+
+
+
+st.title('Scatter Matrix of  Key Quantitative Neuropathology Features')
+st.write('Plot 1: Visualizing correlations between key features from the quantitative neuropathology dataset. This correlation matrix allows one to assess relationships across multiple variables readily and provides hover over funtionality for details on demand! Three key features were selected for visualization in this context: the number of neurons (NeuN positive cells), the number of amyloid beta plaques (6e10 positive objects), and the number of pTau bearing cells (AT8 positive cells).')
+st.write('Interaction: Hover mouse over any data point to see details on demand including: Donor ID, Braak Stage, Thal Phase, ADNC, CERAD, LATE, and donor pseudotime.')
+
 # interactive hover over quant neuropath figure
+
 
 chart = alt.Chart(source)
 fig = chart.mark_circle(size=100).encode(
@@ -124,6 +147,30 @@ fig = chart.mark_circle(size=100).encode(
 ).interactive()
 
 st.altair_chart(fig)
+
+
+dropdown = alt.binding_select(
+    options=['number of AT8 positive cells per area_Grey matter', 'number of 6e10 positive objects per area_Grey matter'],
+    name='X-axis column '
+)
+xcol_param = alt.param(
+    value='number of AT8 positive cells per area_Grey matter',
+    bind=dropdown
+)
+
+chart = alt.Chart(source, width = 1500)
+fig = chart.mark_circle(size=100).encode(
+    x=alt.X('x:Q', title=''),
+    y='number of NeuN positive cells per area_Grey matter:Q',
+    color='Overall AD neuropathological Change:N'
+).transform_calculate(
+    x=f'datum[{xcol_param.name}]'
+).add_params(
+    xcol_param
+)
+
+st.altair_chart(fig)
+
 
 st.title('Model Predictions of Quantitative Neuropathology Markers Over Pseudotime')
 st.write('Plot 2: Generated by Janna Hong. Visualizes the observed data and model predictions for various layers and features related to quant neuropath data of Alzheimers Disease patients, showing the relationship over pseudotime to infer the progression and dynamics of neuropathological markers.')
