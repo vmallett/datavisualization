@@ -46,10 +46,10 @@ with col1:
     HtmlFile = open("html/white_MTG_INFERENCE.html", 'r', encoding='utf-8')
     source_code = HtmlFile.read() 
     # print(source_code)
-    components.html(source_code,  height = 600, width = 850)
+    components.html(source_code,  height = 400, width = 650)
 
 with col2: 
     HtmlFile = open("html/Pink_MTG_INFERENCE_HEATMAP.html", 'r', encoding='utf-8')
     source_code = HtmlFile.read() 
     # print(source_code)
-    components.html(source_code,  height = 600, width = 850)
+    components.html(source_code,  height = 400, width = 650)
