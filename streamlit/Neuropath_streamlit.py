@@ -251,7 +251,7 @@ st.write('Plot 4: Visualizing one key metric (Number of neurons) is split across
 st.write('Interaction: Use mouse to draw a selection box over a given Braak Stage(s) to see the individual breakdown of ADNC categories in non-stacked bar plot.')
 
 
-st.header('Breakdown of the number of neurons per area')
+st.header('Number of neurons per area')
 
 brush = alt.selection_interval()
 
