@@ -20,6 +20,36 @@ from IPython.display import HTML
 import sys
 sys.path.insert(0, '..')
 
+
+st.set_page_config(
+    page_title="Hello",
+    page_icon="👋",
+    layout="wide",
+)
+
+import streamlit as st
+
+st.write("# Welcome to the Neuropath Interactive Viewer! 🧠")
+
+st.sidebar.success("Select a sub-section above.")
+
+st.header("The purpose of this website is to increase the visibility of and allow for visualization of the SEA-AD quantitative neuropathology dataset with interactive plots to enable users to ask more targeted reserach questions.")
+
+st.markdown(
+"""
+Dataset description: SEA-AD is a large multicenter effort which uses postmortem human brain tissue (N=84 donors) 
+to study Alzheimers disease. The middle temporal gyrus (MTG) was the focus of study for the current dataset. 
+This webpage is dedicated to increasing visability of one aspect of this effort: quantitative neuropathology. 
+To supplement the Neuropathology Image Viewer available on sea-ad.org which allows for high resolution synced zooming 
+of both the original and masked image, this viewer is intended to introduce the dataset in more detail and then provide 
+useful and interactive quantitative visualizations! ')
+
+- All images and data are available for download 
+- Check the SEA-AD website here:[sea-ag.org](https://www.sea-ad.org)
+"""
+)
+
+
 def load_image(image_path: str) -> Image.Image:
     try:
         image = Image.open(image_path)
@@ -30,17 +60,6 @@ def load_image(image_path: str) -> Image.Image:
 
 HTML = NewType('HTML', str)
 
-st.set_page_config(layout="wide")
-
-st.title("Quantitative Neuropathology Interactive Data Explorer")
-
-st.write('All images and data are publicly available data at sea-ag.org')
-url = "https://www.sea-ad.org"
-
-st.write('Dataset description: SEA-AD is a large multicenter effort which uses postmortem human brain tissue (N=84 donors) to study Alzheimers disease. The middle temporal gyrus (MTG) was the focus of study for the current dataset. This webpage is dedicated to increasing visability of one aspect of this effort: quantitative neuropathology. To supplement the Neuropathology Image Viewer available on sea-ad.org which allows for high resolution synced zooming of both the original and masked image, this viewer is intended to introduce the dataset in more detail and then provide useful and interactive quantitative visualizations! ')
-
-st.write('')
-
 col1, col_padding, col2 = st.columns([1, 0.05, 1])
 
 ## anndata image
@@ -48,7 +67,7 @@ with col1:
     st.header('Whole slide image with cortical layer annotations')
 
 
-    st.write('Example image of human middle temporal gyrus (MTG) tissue immunohistochemically stained for 6e10 (amyloid beta plaques, brown) and Iba1 (microglia, blue). Cortical layer annotations are included for layers 1, 2, 3, 4, and 5/6. Move mouse over image and scroll to zoom in! High res coming soon...')
+    st.write('Example image of human middle temporal gyrus (MTG) tissue immunohistochemically stained for 6e10 (amyloid beta plaques, brown) and Iba1 (microglia, blue) with cortical layer annotations. Move mouse over image and scroll to zoom in! High res coming soon...')
 
 
     # New streamlit function: image zoom (working), but need higher qualtiy image
@@ -61,8 +80,7 @@ with col1:
             return
 
         # Display the image with zoom capabilities
-        html_content = image_zoom(image, mode="scroll", size=(750, 550), keep_aspect_ratio=True, zoom_factor=4.0, increment=0.2)
-        st.markdown(html_content, unsafe_allow_html=True)
+        image_zoom(image, mode="scroll", size=(750, 550), keep_aspect_ratio=True, zoom_factor=4.0, increment=0.2)
 
     if __name__ == "__main__":
         main()
@@ -71,7 +89,7 @@ with col1:
 
 ## anndata image
 with col2:
-    st.header('Extracted ROI from whole slide image with feature masking')
+    st.header('Extracted ROI with feature masking')
 
 
     st.write('Example annotation mask from the same slide to visualize the features that are quantified (plaques in green and mircroglia in red. Move mouse over image and scroll to zoom in!). High res coming soon...') 
@@ -85,8 +103,7 @@ with col2:
             return
 
         # Display the image with zoom capabilities
-        html_content = image_zoom(image, mode="scroll", size=(750, 550), keep_aspect_ratio=True, zoom_factor=4.0, increment=0.2)
-        st.markdown(html_content, unsafe_allow_html=True)
+        image_zoom(image, mode="scroll", size=(750, 550), keep_aspect_ratio=True, zoom_factor=4.0, increment=0.2)
 
     if __name__ == "__main__":
         main()
