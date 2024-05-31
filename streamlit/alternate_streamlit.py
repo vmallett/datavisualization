@@ -101,25 +101,25 @@ source = neuropath_df
 
 
 
-st.title('Parallel Coordinate')
-st.write('Plot 1: ')
-st.write('Interaction: ')
+# st.title('Parallel Coordinate Plot to Explore Donor Metadata')
+# st.write('Plot 1: ')
+# st.write('Interaction: ')
 
 
-chart = alt.Chart(source, width = 1500)
+# chart = alt.Chart(source, width = 1500)
 
-fig = chart.transform_window(
-    index='count()'
-).transform_fold(
-    ['Braak','Thal']
-).mark_line().encode(
-    x='key:N',
-    y=alt.Y('value:N'),
-    color='donor_ID:N',
-    detail='index:N',
-    opacity=alt.value(0.5)
-)
-st.altair_chart(fig)
+# fig = chart.transform_window(
+#     index='count()'
+# ).transform_fold(
+#     ['Braak','Thal']
+# ).mark_line().encode(
+#     x='key:N',
+#     y=alt.Y('value:N'),
+#     color='donor_ID:N',
+#     detail='index:N',
+#     opacity=alt.value(0.5)
+# )
+# st.altair_chart(fig)
 
 
 
@@ -158,6 +158,17 @@ xcol_param = alt.param(
     bind=dropdown
 )
 
+dropdown = alt.binding_select(
+    options=['number of AT8 positive cells per area_Grey matter', 'number of 6e10 positive objects per area_Grey matter'],
+    name='X-axis column '
+)
+ycol_param = alt.param(
+    value='number of AT8 positive cells per area_Grey matter',
+    bind=dropdown
+)
+
+brush = alt.selection_interval()
+
 chart = alt.Chart(source, width = 1500)
 fig = chart.mark_circle(size=100).encode(
     x=alt.X('x:Q', title=''),
@@ -166,8 +177,18 @@ fig = chart.mark_circle(size=100).encode(
 ).transform_calculate(
     x=f'datum[{xcol_param.name}]'
 ).add_params(
-    xcol_param
+    xcol_param, ycol_param
 )
+
+bars = chart.mark_bar().encode(
+    x='count()',
+    y='Overall AD neuropathological Change:N',
+    color='Overall AD neuropathological Change:N'
+).transform_filter(
+    brush
+)
+
+fig & bars
 
 st.altair_chart(fig)
 
