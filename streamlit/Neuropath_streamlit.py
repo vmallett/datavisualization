@@ -45,7 +45,7 @@ of both the original and masked image, this viewer is intended to introduce the 
 useful and interactive quantitative visualizations! ')
 
 - All images and data are available for download 
-- Check the SEA-AD website here:[sea-ag.org](https://www.sea-ad.org)
+- Check the SEA-AD website here:[sea-ad.org](https://www.sea-ad.org)
 """
 )
 
