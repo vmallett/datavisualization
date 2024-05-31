@@ -88,7 +88,6 @@ with col2:
         main()
 
 
-st.title("Interactive Plots")
 
 # read in quant neuropath (from sea-ad website)
 # st.write('Invisible steam of loading datasets')
@@ -123,10 +122,57 @@ source = neuropath_df
 
 
 
+st.title("Interactive Plots")
+
+
+st.title('Pie Charts for Quick Dataset Overview')
+st.write('Plot 1: Two pie charts to visualize two categories of metadata features in the dataset. The first pie chart visualizes the breakdown of Alzheimers disease related assessments and diagnoses. The second pie chart visualizes donor-level metadata (age at death, sex) tissue quality metrics (RIN, Brain pH).')
+st.write('Interaction: Use the drop down menu to select any feature of interst.')
+
+
+col1, col_padding, col2 = st.columns([1, 0.05, 1])
+
+with col1:
+    # Select the column you want to visualize
+    selected_column = st.selectbox('Select column for pie chart', ['Braak', 'Thal', 'Overall AD neuropathological Change', 'CERAD score', 'LATE'])
+
+    # Calculate counts for each category
+    counts = source[selected_column].value_counts().reset_index()
+    counts.columns = [selected_column, 'count']
+
+    # Create the pie chart
+    fig = alt.Chart(counts).mark_arc(size=500).encode(
+        theta=alt.Theta(field='count', type='quantitative'),
+        color=alt.Color(field=selected_column, type='nominal'),
+        tooltip=[selected_column, 'count']
+    ).properties(
+        title=f'Pie chart of {selected_column}'
+    )
+
+    st.altair_chart(fig)
+
+with col2:
+    # Select the column you want to visualize
+    selected_column = st.selectbox('Select column for pie chart', ['Sex', 'PMI', 'Brain pH', 'RIN', 'Age at Death'])
+
+    # Calculate counts for each category
+    counts = source[selected_column].value_counts().reset_index()
+    counts.columns = [selected_column, 'count']
+
+    # Create the pie chart
+    fig = alt.Chart(counts).mark_arc(size=500).encode(
+        theta=alt.Theta(field='count', type='quantitative'),
+        color=alt.Color(field=selected_column, type='nominal'),
+        tooltip=[selected_column, 'count']
+    ).properties(
+        title=f'Pie chart of {selected_column}'
+    )
+
+    st.altair_chart(fig)
 
 
 st.title('Scatter Matrix of  Key Quantitative Neuropathology Features')
-st.write('Plot 1: Visualizing correlations between key features from the quantitative neuropathology dataset. This correlation matrix allows one to assess relationships across multiple variables readily and provides hover over funtionality for details on demand! Three key features were selected for visualization in this context: the number of neurons (NeuN positive cells), the number of amyloid beta plaques (6e10 positive objects), and the number of pTau bearing cells (AT8 positive cells).')
+st.write('Plot 2: Visualizing correlations between key features from the quantitative neuropathology dataset. This correlation matrix allows one to assess relationships across multiple variables readily and provides hover over funtionality for details on demand! Three key features were selected for visualization in this context: the number of neurons (NeuN positive cells), the number of amyloid beta plaques (6e10 positive objects), and the number of pTau bearing cells (AT8 positive cells).')
 st.write('Interaction: Hover mouse over any data point to see details on demand including: Donor ID, Braak Stage, Thal Phase, ADNC, CERAD, LATE, and donor pseudotime.')
 
 # interactive hover over quant neuropath figure
@@ -149,26 +195,32 @@ fig = chart.mark_circle(size=100).encode(
 st.altair_chart(fig)
 
 
-dropdown = alt.binding_select(
-    options=['number of AT8 positive cells per area_Grey matter', 'number of 6e10 positive objects per area_Grey matter'],
-    name='X-axis column '
-)
-xcol_param = alt.param(
-    value='number of AT8 positive cells per area_Grey matter',
-    bind=dropdown
-)
+# dropdown = alt.binding_select(
+#     options=['number of AT8 positive cells per area_Grey matter', 'number of 6e10 positive objects per area_Grey matter'],
+#     name='X-axis column '
+# )
+# xcol_param = alt.param(
+#     value='number of AT8 positive cells per area_Grey matter',
+#     bind=dropdown
+# )
+
+
+st.title('Stacked Bar with Filtering')
+st.write('Plot 3: Visualizing one key metric (Number of neurons) is split across Braak Stage and ADNC')
+st.write('Interaction: Use mouse to draw a selection box over a given Braak Stage(s) to see the individual breakdown of ADNC categories in non-stacked bar plot.')
 
 brush = alt.selection_interval()
 
 chart = alt.Chart(source, width = 1500)
-fig = chart.mark_circle(size=100).encode(
-    x=alt.X('x:Q', title=''),
+fig = chart.mark_bar(size=100).encode(
+    # x=alt.X('x:Q', title=''),
+    x='Braak:N',
     y='number of NeuN positive cells per area_Grey matter:Q',
     color='Overall AD neuropathological Change:N'
-).transform_calculate(
-    x=f'datum[{xcol_param.name}]'
-).add_params(
-    xcol_param
+# ).transform_calculate(
+#     x=f'datum[{xcol_param.name}]'
+).add_params(brush,
+    # xcol_param
 )
 
 bars = chart.mark_bar().encode(
@@ -181,12 +233,12 @@ bars = chart.mark_bar().encode(
 
 fig & bars
 
-st.altair_chart(fig)
+# st.altair_chart(fig)
 
 
 st.title('Model Predictions of Quantitative Neuropathology Markers Over Pseudotime')
-st.write('Plot 2: Generated by Janna Hong. Visualizes the observed data and model predictions for various layers and features related to quant neuropath data of Alzheimers Disease patients, showing the relationship over pseudotime to infer the progression and dynamics of neuropathological markers.')
-st.write('Interaction: Select a feature of interest (e.g., AT8) and cortical layer (e.g, Layer 3) from the dropdown menu to see specific model predictions.')
+st.write('Plot 2: Generated by Janna Hong using Plotly. Visualizes the observed data and model predictions for various layers and features related to quant neuropath data of Alzheimers Disease patients, showing the relationship over pseudotime to infer the progression and dynamics of neuropathological markers.')
+st.write('Interaction: Select a feature of interest (e.g., AT8) and cortical layer (e.g, Layer 3) from the dropdown menu to see specific model predictions. Option to pan, zoom, and select values of interest.')
 
 import streamlit.components.v1 as components
 
