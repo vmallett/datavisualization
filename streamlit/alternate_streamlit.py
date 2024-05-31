@@ -45,6 +45,8 @@ col1, col_padding, col2 = st.columns([1, 0.05, 1])
 
 ## anndata image
 with col1:
+    st.header('Whole slide image with cortical layer annotations')
+
 
     st.write('Example image of human middle temporal gyrus (MTG) tissue immunohistochemically stained for 6e10 (amyloid beta plaques, brown) and Iba1 (microglia, blue). Cortical layer annotations are included for layers 1, 2, 3, 4, and 5/6. Move mouse over image and scroll to zoom in!')
 
@@ -69,6 +71,8 @@ with col1:
 
 ## anndata image
 with col2:
+    st.header('Extracted ROI from whole slide image with feature masking')
+
 
     st.write('Example annotation mask from the same slide to visualize the features that are quantified (plaques in green and mircroglia in red. Duplex stains allow for co-localization analysis, which assesses the spatial overlap between plaques and microglia which is relevant for AD pathophysiology. Move mouse over image and scroll to zoom in!)') 
 
@@ -209,6 +213,9 @@ st.title('Stacked Bar with Filtering')
 st.write('Plot 3: Visualizing one key metric (Number of neurons) is split across Braak Stage and ADNC')
 st.write('Interaction: Use mouse to draw a selection box over a given Braak Stage(s) to see the individual breakdown of ADNC categories in non-stacked bar plot.')
 
+
+st.header('Breakdown of the number of neurons per area')
+
 brush = alt.selection_interval()
 
 chart = alt.Chart(source, width = 1500)
@@ -216,6 +223,62 @@ fig = chart.mark_bar(size=100).encode(
     # x=alt.X('x:Q', title=''),
     x='Braak:N',
     y='number of NeuN positive cells per area_Grey matter:Q',
+    color='Overall AD neuropathological Change:N'
+# ).transform_calculate(
+#     x=f'datum[{xcol_param.name}]'
+).add_params(brush,
+    # xcol_param
+)
+
+bars = chart.mark_bar().encode(
+    x='count()',
+    y='Overall AD neuropathological Change:N',
+    color='Overall AD neuropathological Change:N'
+).transform_filter(
+    brush
+)
+
+fig & bars
+
+
+
+st.header('Number of pTau-bearing cells per area')
+
+
+brush = alt.selection_interval()
+
+chart = alt.Chart(source, width = 1500)
+fig = chart.mark_bar(size=100).encode(
+    # x=alt.X('x:Q', title=''),
+    x='Braak:N',
+    y='number of AT8 positive cells per area_Grey matter:Q',
+    color='Overall AD neuropathological Change:N'
+# ).transform_calculate(
+#     x=f'datum[{xcol_param.name}]'
+).add_params(brush,
+    # xcol_param
+)
+
+bars = chart.mark_bar().encode(
+    x='count()',
+    y='Overall AD neuropathological Change:N',
+    color='Overall AD neuropathological Change:N'
+).transform_filter(
+    brush
+)
+
+fig & bars
+
+
+st.header('Number of amyloid beta plaques per area')
+
+brush = alt.selection_interval()
+
+chart = alt.Chart(source, width = 1500)
+fig = chart.mark_bar(size=100).encode(
+    # x=alt.X('x:Q', title=''),
+    x='Braak:N',
+    y='number of 6e10 positive objects per area_Grey matter:Q',
     color='Overall AD neuropathological Change:N'
 # ).transform_calculate(
 #     x=f'datum[{xcol_param.name}]'
